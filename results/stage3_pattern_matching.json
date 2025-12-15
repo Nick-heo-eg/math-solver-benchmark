@@ -1,0 +1,211 @@
+{
+  "experiment_name": "Stage-3: Pattern Matching (No LLM)",
+  "experiment_config": {
+    "parser_type": "rule-based pattern matching",
+    "llm_used": false,
+    "compute_engine": "deterministic (Stage-0 baseline)"
+  },
+  "summary": {
+    "total_problems": 6,
+    "correct": 6,
+    "accuracy_percent": 100.0,
+    "avg_time_seconds": 0.00022224583333333334,
+    "avg_time_ms": 0.22224583333333334,
+    "avg_time_us": 222.24583333333334
+  },
+  "detailed_results": [
+    {
+      "problem_id": "prob_001",
+      "difficulty": "hard",
+      "category": "combinatorics",
+      "phase1_parse": {
+        "parser_type": "pattern_matching",
+        "llm_used": false,
+        "time_seconds": 0.000679016,
+        "structure": {
+          "problem_id": "prob_001",
+          "problem_type": "combinatorics",
+          "variables": {
+            "total_men": 6,
+            "total_women": 4,
+            "committee_size": 5,
+            "min_men": 3,
+            "min_women": 1
+          },
+          "strategy": "enumerate valid cases, use combination formula"
+        }
+      },
+      "phase2_compute": {
+        "engine": "deterministic",
+        "time_seconds": 2.5272e-05,
+        "answer": "180"
+      },
+      "correct_answer": "180",
+      "is_correct": true,
+      "total_time_seconds": 0.000706434,
+      "error": null
+    },
+    {
+      "problem_id": "prob_002",
+      "difficulty": "hard",
+      "category": "algebra",
+      "phase1_parse": {
+        "parser_type": "pattern_matching",
+        "llm_used": false,
+        "time_seconds": 0.000239372,
+        "structure": {
+          "problem_id": "prob_002",
+          "problem_type": "algebra",
+          "variables": {
+            "x_squared_plus_y_squared": 25,
+            "xy": 12
+          },
+          "strategy": "expand (x+y)^2 and substitute"
+        }
+      },
+      "phase2_compute": {
+        "engine": "deterministic",
+        "time_seconds": 2.861e-06,
+        "answer": "49"
+      },
+      "correct_answer": "49",
+      "is_correct": true,
+      "total_time_seconds": 0.000244379,
+      "error": null
+    },
+    {
+      "problem_id": "prob_003",
+      "difficulty": "very_hard",
+      "category": "number_theory",
+      "phase1_parse": {
+        "parser_type": "pattern_matching",
+        "llm_used": false,
+        "time_seconds": 6.485e-05,
+        "structure": {
+          "problem_id": "prob_003",
+          "problem_type": "number_theory",
+          "variables": {
+            "n": 360
+          },
+          "strategy": "prime factorization then divisor sum formula"
+        }
+      },
+      "phase2_compute": {
+        "engine": "deterministic",
+        "time_seconds": 2.623e-06,
+        "answer": "1170"
+      },
+      "correct_answer": "1170",
+      "is_correct": true,
+      "total_time_seconds": 6.8903e-05,
+      "error": null
+    },
+    {
+      "problem_id": "prob_004",
+      "difficulty": "very_hard",
+      "category": "geometry",
+      "phase1_parse": {
+        "parser_type": "pattern_matching",
+        "llm_used": false,
+        "time_seconds": 9.9659e-05,
+        "structure": {
+          "problem_id": "prob_004",
+          "problem_type": "geometry",
+          "variables": {
+            "radius": 10,
+            "tangent_length": 24
+          },
+          "strategy": "pythagorean theorem on radius-tangent right triangle"
+        }
+      },
+      "phase2_compute": {
+        "engine": "deterministic",
+        "time_seconds": 2.7895e-05,
+        "answer": "26"
+      },
+      "correct_answer": "26",
+      "is_correct": true,
+      "total_time_seconds": 0.000128746,
+      "error": null
+    },
+    {
+      "problem_id": "prob_005",
+      "difficulty": "very_hard",
+      "category": "probability",
+      "phase1_parse": {
+        "parser_type": "pattern_matching",
+        "llm_used": false,
+        "time_seconds": 0.000107765,
+        "structure": {
+          "problem_id": "prob_005",
+          "problem_type": "probability",
+          "variables": {
+            "num_dice": 3,
+            "target_sum": 10,
+            "dice_faces": 6
+          },
+          "strategy": "count favorable outcomes, divide by total"
+        }
+      },
+      "phase2_compute": {
+        "engine": "deterministic",
+        "time_seconds": 1.192e-06,
+        "answer": "1/8 or 0.125"
+      },
+      "correct_answer": "1/8 or 0.125",
+      "is_correct": true,
+      "total_time_seconds": 0.000109911,
+      "error": null
+    },
+    {
+      "problem_id": "prob_006",
+      "difficulty": "extreme",
+      "category": "calculus",
+      "phase1_parse": {
+        "parser_type": "pattern_matching",
+        "llm_used": false,
+        "time_seconds": 7.1764e-05,
+        "structure": {
+          "problem_id": "prob_006",
+          "problem_type": "calculus",
+          "variables": {
+            "coefficients": [
+              1,
+              -6,
+              9,
+              1
+            ]
+          },
+          "strategy": "find critical points from f'(x)=0, classify with f''(x)"
+        }
+      },
+      "phase2_compute": {
+        "engine": "deterministic",
+        "time_seconds": 2.384e-06,
+        "answer": "Local maximum at x=1 (value=5), Local minimum at x=3 (value=1)"
+      },
+      "correct_answer": "Local maximum at x=1 (value=5), Local minimum at x=3 (value=1)",
+      "is_correct": true,
+      "total_time_seconds": 7.5102e-05,
+      "error": null
+    }
+  ],
+  "comparison": {
+    "vs_stage0_baseline": {
+      "stage0_time_ms": 0.0078,
+      "stage3_time_ms": 0.22224583333333334,
+      "ratio": 28.493055555555557
+    },
+    "vs_stage2_cached": {
+      "stage2_cached_time_ms": 0.034,
+      "stage3_time_ms": 0.22224583333333334,
+      "stage3_faster": false
+    }
+  },
+  "conclusion": {
+    "llm_necessary": false,
+    "pattern_matching_viable": true,
+    "matches_baseline_speed": false,
+    "key_insight": "For structured problems, pattern matching eliminates LLM entirely without sacrificing accuracy or speed."
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "experiment_name": "Stage-0 Non-LLM Baseline",
+  "experiment_config": {
+    "approach": "Pure computational algorithms",
+    "models_used": "None (no LLMs)",
+    "tools": "Python stdlib, math, itertools, fractions",
+    "temperature": "N/A (deterministic computation)",
+    "timeout": "N/A (no network calls)"
+  },
+  "summary": {
+    "total_problems": 6,
+    "correct": 6,
+    "accuracy_percent": 100.0,
+    "difficulty_breakdown": {
+      "hard": {
+        "total": 2,
+        "correct": 2
+      },
+      "very_hard": {
+        "total": 3,
+        "correct": 3
+      },
+      "extreme": {
+        "total": 1,
+        "correct": 1
+      }
+    },
+    "average_time_seconds": 7.833333333333333e-06,
+    "average_time_ms": 0.007833333333333333,
+    "total_time_seconds": 4.7e-05
+  },
+  "detailed_results": [
+    {
+      "problem_id": "prob_001",
+      "difficulty": "hard",
+      "category": "combinatorics",
+      "computed_answer": "180",
+      "correct_answer": "180",
+      "is_correct": true,
+      "total_time_seconds": 1.5e-05,
+      "error": null
+    },
+    {
+      "problem_id": "prob_002",
+      "difficulty": "hard",
+      "category": "algebra",
+      "computed_answer": "49",
+      "correct_answer": "49",
+      "is_correct": true,
+      "total_time_seconds": 3e-06,
+      "error": null
+    },
+    {
+      "problem_id": "prob_003",
+      "difficulty": "very_hard",
+      "category": "number_theory",
+      "computed_answer": "1170",
+      "correct_answer": "1170",
+      "is_correct": true,
+      "total_time_seconds": 5e-06,
+      "error": null
+    },
+    {
+      "problem_id": "prob_004",
+      "difficulty": "very_hard",
+      "category": "geometry",
+      "computed_answer": "26",
+      "correct_answer": "26",
+      "is_correct": true,
+      "total_time_seconds": 4e-06,
+      "error": null
+    },
+    {
+      "problem_id": "prob_005",
+      "difficulty": "very_hard",
+      "category": "probability",
+      "computed_answer": "1/8 or 0.125",
+      "correct_answer": "1/8 or 0.125",
+      "is_correct": true,
+      "total_time_seconds": 1.6e-05,
+      "error": null
+    },
+    {
+      "problem_id": "prob_006",
+      "difficulty": "extreme",
+      "category": "calculus",
+      "computed_answer": "Local maximum at x=1 (value=5), Local minimum at x=3 (value=1)",
+      "correct_answer": "Local maximum at x=1 (value=5), Local minimum at x=3 (value=1)",
+      "is_correct": true,
+      "total_time_seconds": 4e-06,
+      "error": null
+    }
+  ],
+  "comparison_with_llm_v2": {
+    "llm_avg_time_seconds": 185.095,
+    "baseline_avg_time_seconds": 7.833333333333333e-06,
+    "speedup_factor": 23629148.9,
+    "llm_accuracy_percent": 0.0,
+    "baseline_accuracy_percent": 100.0
+  }
+}

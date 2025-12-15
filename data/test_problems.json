@@ -1,0 +1,97 @@
+[
+  {
+    "id": "prob_001",
+    "difficulty": "hard",
+    "category": "combinatorics",
+    "problem": "A committee of 5 people is to be chosen from 6 men and 4 women. In how many ways can the committee be formed if it must contain at least 3 men and at least 1 woman?",
+    "answer": "180",
+    "solution_steps": [
+      "Case 1: 3 men, 2 women = C(6,3) * C(4,2) = 20 * 6 = 120",
+      "Case 2: 4 men, 1 woman = C(6,4) * C(4,1) = 15 * 4 = 60",
+      "Case 3: 5 men, 0 women = not allowed (need at least 1 woman)",
+      "Total = 120 + 60 = 180"
+    ]
+  },
+  {
+    "id": "prob_002",
+    "difficulty": "hard",
+    "category": "algebra",
+    "problem": "If x^2 + y^2 = 25 and xy = 12, find the value of (x + y)^2.",
+    "answer": "49",
+    "solution_steps": [
+      "(x + y)^2 = x^2 + 2xy + y^2",
+      "(x + y)^2 = (x^2 + y^2) + 2xy",
+      "(x + y)^2 = 25 + 2(12)",
+      "(x + y)^2 = 25 + 24 = 49"
+    ]
+  },
+  {
+    "id": "prob_003",
+    "difficulty": "very_hard",
+    "category": "number_theory",
+    "problem": "Find the sum of all positive divisors of 360.",
+    "answer": "1170",
+    "solution_steps": [
+      "Prime factorization: 360 = 2^3 * 3^2 * 5^1",
+      "Using divisor sum formula: σ(n) = Π[(p^(k+1) - 1) / (p - 1)]",
+      "σ(360) = [(2^4 - 1)/(2-1)] * [(3^3 - 1)/(3-1)] * [(5^2 - 1)/(5-1)]",
+      "σ(360) = [15/1] * [26/2] * [24/4]",
+      "σ(360) = 15 * 13 * 6 = 1170"
+    ]
+  },
+  {
+    "id": "prob_004",
+    "difficulty": "very_hard",
+    "category": "geometry",
+    "problem": "A circle has center O and radius 10. Point P is outside the circle such that the tangent from P to the circle has length 24. Find the distance OP.",
+    "answer": "26",
+    "solution_steps": [
+      "Let T be the point of tangency",
+      "OT = radius = 10 (given)",
+      "PT = tangent length = 24 (given)",
+      "OT ⊥ PT (radius perpendicular to tangent)",
+      "By Pythagorean theorem: OP^2 = OT^2 + PT^2",
+      "OP^2 = 10^2 + 24^2 = 100 + 576 = 676",
+      "OP = √676 = 26"
+    ]
+  },
+  {
+    "id": "prob_005",
+    "difficulty": "very_hard",
+    "category": "probability",
+    "problem": "Three dice are rolled. What is the probability that the sum is exactly 10?",
+    "answer": "1/8 or 0.125",
+    "solution_steps": [
+      "Total possible outcomes = 6^3 = 216",
+      "Need to count ways to get sum = 10",
+      "Systematic enumeration:",
+      "(1,3,6), (1,4,5), (1,5,4), (1,6,3)",
+      "(2,2,6), (2,3,5), (2,4,4), (2,5,3), (2,6,2)",
+      "(3,1,6), (3,2,5), (3,3,4), (3,4,3), (3,5,2), (3,6,1)",
+      "(4,1,5), (4,2,4), (4,3,3), (4,4,2), (4,5,1)",
+      "(5,1,4), (5,2,3), (5,3,2), (5,4,1)",
+      "(6,1,3), (6,2,2), (6,3,1)",
+      "Total favorable outcomes = 27",
+      "Probability = 27/216 = 1/8 = 0.125"
+    ]
+  },
+  {
+    "id": "prob_006",
+    "difficulty": "extreme",
+    "category": "calculus",
+    "problem": "If f(x) = x^3 - 6x^2 + 9x + 1, find all local extrema of f(x) and determine whether each is a maximum or minimum.",
+    "answer": "Local maximum at x=1 (value=5), Local minimum at x=3 (value=1)",
+    "solution_steps": [
+      "Find f'(x) = 3x^2 - 12x + 9",
+      "Set f'(x) = 0: 3x^2 - 12x + 9 = 0",
+      "Divide by 3: x^2 - 4x + 3 = 0",
+      "Factor: (x-1)(x-3) = 0",
+      "Critical points: x = 1 and x = 3",
+      "Find f''(x) = 6x - 12",
+      "At x=1: f''(1) = 6(1) - 12 = -6 < 0 → local maximum",
+      "At x=3: f''(3) = 6(3) - 12 = 6 > 0 → local minimum",
+      "f(1) = 1 - 6 + 9 + 1 = 5 (local max)",
+      "f(3) = 27 - 54 + 27 + 1 = 1 (local min)"
+    ]
+  }
+]
