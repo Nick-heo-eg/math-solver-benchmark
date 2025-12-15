@@ -196,10 +196,10 @@ MIT License - See [LICENSE](LICENSE) for details
 If you use this benchmark in your research:
 
 ```bibtex
-@misc{math-solver-benchmark-2024,
+@misc{math-solver-benchmark-2025,
   title={Math Solver Benchmark: LLM vs Pattern Matching},
   author={Echo Judgment System Research},
-  year={2024},
+  year={2025},
   url={https://github.com/Nick-heo-eg/math-solver-benchmark}
 }
 ```
@@ -214,5 +214,5 @@ If you use this benchmark in your research:
 
 **Built to prove a point**: For deterministic computational tasks, the best LLM is no LLM.
 
-**Tested**: December 2024
+**Tested**: December 2025
 **Status**: Experiment complete, results public

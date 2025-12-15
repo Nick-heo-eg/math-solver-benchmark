@@ -419,4 +419,4 @@ Still 300× faster than pure LLM (3s every problem).
 
 ---
 
-**Last updated**: December 2024
+**Last updated**: December 2025

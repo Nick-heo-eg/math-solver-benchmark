@@ -1,6 +1,6 @@
 {
   "experiment_name": "Math Solver Benchmark: LLM vs Pattern Matching",
-  "experiment_date": "December 2024",
+  "experiment_date": "December 2025",
   "total_problems": 6,
   "problem_categories": [
     "combinatorics",
