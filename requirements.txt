@@ -1,0 +1,23 @@
+# Math Solver Benchmark Requirements
+
+# Core dependencies (Python 3.8+)
+# No external dependencies for Stage-0, Stage-1A, Stage-3 (pattern matching)
+
+# Optional: For Stage-1B and Stage-2 (LLM-based experiments)
+# Note: These stages demonstrate LLM failure/caching, but are not required
+# to run the main benchmark (Stage-3 pattern matching)
+
+# LLM integration (optional, for Stage-1B/2 only)
+# pip install ollama-python
+# Also requires: Ollama installed locally with phi3:mini model
+# Installation: https://ollama.ai/
+
+# Standard library dependencies (included in Python):
+# - json
+# - time
+# - re
+# - pathlib
+# - typing
+# - math
+# - hashlib
+# - datetime

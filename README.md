@@ -90,6 +90,47 @@ No "understanding", no "reasoning", just:
 - Variable extraction
 - Formula application
 
+## How to Run
+
+### Quick Start (Pattern Matching - No LLM Required)
+
+```bash
+# Clone the repository
+git clone https://github.com/Nick-heo-eg/math-solver-benchmark.git
+cd math-solver-benchmark
+
+# Run Stage-3 (pattern matching benchmark)
+python scripts/run_stage3_pattern_matching.py
+
+# Run Stage-0 (pure computation baseline)
+python scripts/run_stage0_baseline.py
+```
+
+**No dependencies required** - Uses only Python standard library (3.8+)
+
+### Running LLM Experiments (Optional)
+
+To reproduce Stage-1B (LLM parsing failure) or Stage-2 (cached LLM):
+
+```bash
+# Install Ollama
+# https://ollama.ai/
+
+# Pull phi3:mini model
+ollama pull phi3:mini
+
+# Run Stage-2 (cached LLM)
+python scripts/run_stage2_cached_interpretation.py
+
+# Run Stage-1B (LLM parsing - will timeout)
+# Warning: Takes 90s per problem, all fail
+python scripts/run_stage1b_llm_parsing.py
+```
+
+### Results
+
+All scripts save results to `results/` directory in JSON format.
+
 ## Documentation
 
 - **[EXPERIMENT_LOG.md](EXPERIMENT_LOG.md)** - Complete experimental log with methodology
