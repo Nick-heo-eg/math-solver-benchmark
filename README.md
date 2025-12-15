@@ -6,6 +6,8 @@
 [![Accuracy](https://img.shields.io/badge/accuracy-100%25-brightgreen)]()
 [![Speed](https://img.shields.io/badge/speedup-400000x-blue)]()
 
+> ⚠️ **Important**: This compares **runtime LLM parsing vs LLM-designed patterns**, not "LLM capability vs regex". See [CLARIFICATION.md](CLARIFICATION.md) for details.
+
 ## Quick Results
 
 | Approach | Speed | Accuracy | LLM Used |
@@ -22,6 +24,30 @@
 ## The Answer
 
 **Yes. And it's 400,000× faster.**
+
+## What We Actually Compared
+
+This is **not** "regex vs LLM capability". It's **runtime architecture comparison**:
+
+### Architecture A: LLM Parsing at Runtime
+- **Model**: phi3:mini (3.8B parameters, local via Ollama)
+- **Process**: Problem → LLM parses → Extract structure → Compute
+- **LLM role**: Called at runtime for every single problem
+- **Result**: 90,000ms timeout, 0% success rate
+
+### Architecture B: Pattern Matching (LLM-Designed, Runtime-Free)
+- **Design phase**: Patterns designed once with Claude's assistance (offline)
+- **Runtime**: Problem → Regex match → Extract structure → Compute
+- **LLM role**: None at runtime (only used during design)
+- **Result**: 0.183ms, 100% success rate
+
+### Key Distinction
+
+**Claude designed the patterns** (Architecture B), but **doesn't run them**.
+
+This validates the principle: **"LLM for design (offline), deterministic code for execution (online)"**
+
+The comparison proves: Runtime LLM parsing (phi3:mini) vs LLM-designed patterns (no runtime LLM) = 492,896× speedup.
 
 ## What We Tested
 
