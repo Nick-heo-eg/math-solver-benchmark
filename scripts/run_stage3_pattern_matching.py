@@ -94,8 +94,21 @@ class ProblemClassifier:
         ]
     }
 
-    def classify(self, problem_text: str) -> str:
-        """Classify problem using keyword matching"""
+    def classify(self, problem_text: str) -> Dict:
+        """
+        Classify problem using keyword matching.
+
+        Args:
+            problem_text: The problem text to classify
+
+        Returns:
+            dict with keys:
+                - 'category': str or None (best matching category)
+                - 'confidence': int (score of best category, 0 if no match)
+                - 'all_scores': dict (scores for all categories)
+                - 'is_tie': bool (True if multiple categories have max score)
+                - 'matched_categories': list (categories with score > 0)
+        """
         problem_lower = problem_text.lower()
 
         scores = {}
@@ -103,8 +116,27 @@ class ProblemClassifier:
             score = sum(1 for pattern in patterns if re.search(pattern, problem_lower))
             scores[category] = score
 
-        # Return category with highest score
-        return max(scores.items(), key=lambda x: x[1])[0]
+        max_score = max(scores.values())
+
+        # Determine best category
+        if max_score == 0:
+            best_category = None
+        else:
+            best_category = max(scores.items(), key=lambda x: x[1])[0]
+
+        # Check for ties
+        is_tie = list(scores.values()).count(max_score) > 1 if max_score > 0 else False
+
+        # Get all categories with matches
+        matched_categories = [cat for cat, score in scores.items() if score > 0]
+
+        return {
+            'category': best_category,
+            'confidence': max_score,
+            'all_scores': scores,
+            'is_tie': is_tie,
+            'matched_categories': matched_categories
+        }
 
 
 class PatternBasedParser:
@@ -236,7 +268,8 @@ class PatternBasedParser:
 
         # Classify
         classifier = ProblemClassifier()
-        category = classifier.classify(problem_text)
+        classification_result = classifier.classify(problem_text)
+        category = classification_result['category']
 
         # Parse based on category
         parser_map = {
@@ -248,7 +281,20 @@ class PatternBasedParser:
             'calculus': self.parse_calculus
         }
 
-        structure = parser_map[category](problem_text, problem_id)
+        # Handle unknown categories
+        if category is None:
+            structure = {
+                'id': problem_id,
+                'category': 'UNKNOWN',
+                'confidence': classification_result['confidence'],
+                'all_scores': classification_result['all_scores'],
+                'error': 'No matching category found (all scores = 0)'
+            }
+        else:
+            structure = parser_map[category](problem_text, problem_id)
+            # Add classification metadata
+            structure['classification_confidence'] = classification_result['confidence']
+            structure['all_category_scores'] = classification_result['all_scores']
         parse_time = time.time() - start_time
 
         return {
