@@ -9,9 +9,9 @@
     "total_problems": 6,
     "correct": 6,
     "accuracy_percent": 100.0,
-    "avg_time_seconds": 0.00022224583333333334,
-    "avg_time_ms": 0.22224583333333334,
-    "avg_time_us": 222.24583333333334
+    "avg_time_seconds": 0.00021533183333333336,
+    "avg_time_ms": 0.21533183333333336,
+    "avg_time_us": 215.33183333333335
   },
   "detailed_results": [
     {
@@ -21,7 +21,7 @@
       "phase1_parse": {
         "parser_type": "pattern_matching",
         "llm_used": false,
-        "time_seconds": 0.000679016,
+        "time_seconds": 0.00067544,
         "structure": {
           "problem_id": "prob_001",
           "problem_type": "combinatorics",
@@ -32,17 +32,26 @@
             "min_men": 3,
             "min_women": 1
           },
-          "strategy": "enumerate valid cases, use combination formula"
+          "strategy": "enumerate valid cases, use combination formula",
+          "classification_confidence": 2,
+          "all_category_scores": {
+            "combinatorics": 2,
+            "algebra": 0,
+            "number_theory": 0,
+            "geometry": 0,
+            "probability": 0,
+            "calculus": 0
+          }
         }
       },
       "phase2_compute": {
         "engine": "deterministic",
-        "time_seconds": 2.5272e-05,
+        "time_seconds": 4.2915e-05,
         "answer": "180"
       },
       "correct_answer": "180",
       "is_correct": true,
-      "total_time_seconds": 0.000706434,
+      "total_time_seconds": 0.000720978,
       "error": null
     },
     {
@@ -52,7 +61,7 @@
       "phase1_parse": {
         "parser_type": "pattern_matching",
         "llm_used": false,
-        "time_seconds": 0.000239372,
+        "time_seconds": 0.000111341,
         "structure": {
           "problem_id": "prob_002",
           "problem_type": "algebra",
@@ -60,17 +69,26 @@
             "x_squared_plus_y_squared": 25,
             "xy": 12
           },
-          "strategy": "expand (x+y)^2 and substitute"
+          "strategy": "expand (x+y)^2 and substitute",
+          "classification_confidence": 5,
+          "all_category_scores": {
+            "combinatorics": 0,
+            "algebra": 5,
+            "number_theory": 0,
+            "geometry": 0,
+            "probability": 0,
+            "calculus": 0
+          }
         }
       },
       "phase2_compute": {
         "engine": "deterministic",
-        "time_seconds": 2.861e-06,
+        "time_seconds": 2.384e-06,
         "answer": "49"
       },
       "correct_answer": "49",
       "is_correct": true,
-      "total_time_seconds": 0.000244379,
+      "total_time_seconds": 0.000115633,
       "error": null
     },
     {
@@ -80,24 +98,33 @@
       "phase1_parse": {
         "parser_type": "pattern_matching",
         "llm_used": false,
-        "time_seconds": 6.485e-05,
+        "time_seconds": 6.9141e-05,
         "structure": {
           "problem_id": "prob_003",
           "problem_type": "number_theory",
           "variables": {
             "n": 360
           },
-          "strategy": "prime factorization then divisor sum formula"
+          "strategy": "prime factorization then divisor sum formula",
+          "classification_confidence": 2,
+          "all_category_scores": {
+            "combinatorics": 0,
+            "algebra": 0,
+            "number_theory": 2,
+            "geometry": 0,
+            "probability": 0,
+            "calculus": 0
+          }
         }
       },
       "phase2_compute": {
         "engine": "deterministic",
-        "time_seconds": 2.623e-06,
+        "time_seconds": 3.815e-06,
         "answer": "1170"
       },
       "correct_answer": "1170",
       "is_correct": true,
-      "total_time_seconds": 6.8903e-05,
+      "total_time_seconds": 7.391e-05,
       "error": null
     },
     {
@@ -107,7 +134,7 @@
       "phase1_parse": {
         "parser_type": "pattern_matching",
         "llm_used": false,
-        "time_seconds": 9.9659e-05,
+        "time_seconds": 0.000121832,
         "structure": {
           "problem_id": "prob_004",
           "problem_type": "geometry",
@@ -115,17 +142,26 @@
             "radius": 10,
             "tangent_length": 24
           },
-          "strategy": "pythagorean theorem on radius-tangent right triangle"
+          "strategy": "pythagorean theorem on radius-tangent right triangle",
+          "classification_confidence": 4,
+          "all_category_scores": {
+            "combinatorics": 0,
+            "algebra": 0,
+            "number_theory": 0,
+            "geometry": 4,
+            "probability": 0,
+            "calculus": 0
+          }
         }
       },
       "phase2_compute": {
         "engine": "deterministic",
-        "time_seconds": 2.7895e-05,
+        "time_seconds": 2.9087e-05,
         "answer": "26"
       },
       "correct_answer": "26",
       "is_correct": true,
-      "total_time_seconds": 0.000128746,
+      "total_time_seconds": 0.000152588,
       "error": null
     },
     {
@@ -135,7 +171,7 @@
       "phase1_parse": {
         "parser_type": "pattern_matching",
         "llm_used": false,
-        "time_seconds": 0.000107765,
+        "time_seconds": 0.000128746,
         "structure": {
           "problem_id": "prob_005",
           "problem_type": "probability",
@@ -144,7 +180,16 @@
             "target_sum": 10,
             "dice_faces": 6
           },
-          "strategy": "count favorable outcomes, divide by total"
+          "strategy": "count favorable outcomes, divide by total",
+          "classification_confidence": 4,
+          "all_category_scores": {
+            "combinatorics": 0,
+            "algebra": 0,
+            "number_theory": 0,
+            "geometry": 0,
+            "probability": 4,
+            "calculus": 0
+          }
         }
       },
       "phase2_compute": {
@@ -154,7 +199,7 @@
       },
       "correct_answer": "1/8 or 0.125",
       "is_correct": true,
-      "total_time_seconds": 0.000109911,
+      "total_time_seconds": 0.000130892,
       "error": null
     },
     {
@@ -164,7 +209,7 @@
       "phase1_parse": {
         "parser_type": "pattern_matching",
         "llm_used": false,
-        "time_seconds": 7.1764e-05,
+        "time_seconds": 9.346e-05,
         "structure": {
           "problem_id": "prob_006",
           "problem_type": "calculus",
@@ -176,29 +221,38 @@
               1
             ]
           },
-          "strategy": "find critical points from f'(x)=0, classify with f''(x)"
+          "strategy": "find critical points from f'(x)=0, classify with f''(x)",
+          "classification_confidence": 5,
+          "all_category_scores": {
+            "combinatorics": 0,
+            "algebra": 1,
+            "number_theory": 0,
+            "geometry": 0,
+            "probability": 0,
+            "calculus": 5
+          }
         }
       },
       "phase2_compute": {
         "engine": "deterministic",
-        "time_seconds": 2.384e-06,
+        "time_seconds": 3.576e-06,
         "answer": "Local maximum at x=1 (value=5), Local minimum at x=3 (value=1)"
       },
       "correct_answer": "Local maximum at x=1 (value=5), Local minimum at x=3 (value=1)",
       "is_correct": true,
-      "total_time_seconds": 7.5102e-05,
+      "total_time_seconds": 9.799e-05,
       "error": null
     }
   ],
   "comparison": {
     "vs_stage0_baseline": {
       "stage0_time_ms": 0.0078,
-      "stage3_time_ms": 0.22224583333333334,
-      "ratio": 28.493055555555557
+      "stage3_time_ms": 0.21533183333333336,
+      "ratio": 27.606645299145303
     },
     "vs_stage2_cached": {
       "stage2_cached_time_ms": 0.034,
-      "stage3_time_ms": 0.22224583333333334,
+      "stage3_time_ms": 0.21533183333333336,
       "stage3_faster": false
     }
   },

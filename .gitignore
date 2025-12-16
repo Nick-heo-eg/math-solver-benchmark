@@ -1,1 +1,4 @@
 DEVELOPER_MISCONCEPTIONS.md
+__pycache__/
+*.pyc
+*.pyo
