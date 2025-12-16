@@ -1,4 +1,4 @@
-# echo_engine/stage5/gate.py
+# stage5/gate.py
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -7,8 +7,8 @@ from typing import Any, Dict, Optional
 
 
 class GateRoute(str, Enum):
-    STRUCTURED = "STRUCTURED"    # Fast path -> Stage-0
-    PATTERNABLE = "PATTERNABLE"  # Deterministic parse -> Stage-3
+    STRUCTURED = "STRUCTURED"    # Fast path -> direct compute (if fields present)
+    PATTERNABLE = "PATTERNABLE"  # Deterministic parse -> extract then compute
     UNTRUSTED = "UNTRUSTED"      # STOP
 
 
@@ -24,8 +24,8 @@ class GateDecision:
 class Stage5Gate:
     """
     O(1) heuristics only. No inference.
-    - STRUCTURED: already has fields required for Stage-0 compute
-    - PATTERNABLE: raw text contains recognizable pattern for Stage-3 extraction
+    - STRUCTURED: already has fields required for direct compute
+    - PATTERNABLE: raw text contains recognizable pattern for extraction
     - UNTRUSTED: missing/ambiguous/unsupported -> STOP
     """
 
@@ -52,13 +52,17 @@ class Stage5Gate:
         )
 
     def _get_raw(self, problem_data: Dict[str, Any]) -> Optional[str]:
-        raw = problem_data.get("raw")
-        return raw if isinstance(raw, str) and raw.strip() else None
+        # Try multiple keys: "raw", "problem", "text"
+        for key in ("raw", "problem", "text"):
+            val = problem_data.get(key)
+            if isinstance(val, str) and val.strip():
+                return val
+        return None
 
     def _is_already_structured(self, problem_data: Dict[str, Any]) -> bool:
         """
-        Example structured contract (customize to your existing Stage-0 schema):
-          { "kind": "nCk_times_nCk", "n1": 6, "k1": 3, "n2": 4, "k2": 2 }
+        Check if problem_data contains pre-extracted structured fields.
+        Currently only supports "kind" contract (legacy Stage-0 format).
         """
         kind = problem_data.get("kind")
         if kind == "nCk_times_nCk":
@@ -69,9 +73,32 @@ class Stage5Gate:
         """
         Deterministic pattern checks only.
         Keep this fast and conservative.
+        Returns True if ANY pattern matches.
         """
         s = raw.lower()
-        # Example: committee / combinations pattern
-        if ("committee" in s or "choose" in s) and ("men" in s and "women" in s):
+
+        # Pattern 1: Combinatorics
+        if ("committee" in s or "choose" in s or "ways" in s) and ("men" in s and "women" in s):
             return True
+
+        # Pattern 2: Algebra (x² + y²)
+        if ("x^2" in s or "x²" in s or "x**2" in s) and ("xy" in s or "x*y" in s):
+            return True
+
+        # Pattern 3: Number Theory (divisors)
+        if ("divisor" in s or "factor" in s) and "sum" in s:
+            return True
+
+        # Pattern 4: Geometry (circle, radius, tangent)
+        if "circle" in s and "radius" in s and "tangent" in s:
+            return True
+
+        # Pattern 5: Probability (dice)
+        if ("dice" in s or "die" in s) and ("sum" in s or "probability" in s):
+            return True
+
+        # Pattern 6: Calculus (f(x), extrema)
+        if "f(x)" in s and ("extrem" in s or "maximum" in s or "minimum" in s):
+            return True
+
         return False
