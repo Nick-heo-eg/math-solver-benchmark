@@ -225,7 +225,7 @@ LLM used only for designing layers (offline, once)
 
 **Q: Is this just hardcoding?**
 
-A: Yes. That's the point. For structured domains, hardcoded deterministic rules beat LLM "understanding" by 6 orders of magnitude.
+A: Patterns are reusable, numbers are computed dynamically. Same pattern handles `"5 from 6 men, 4 women" → 180` and `"10 from 20 men, 15 women" → different answer`. Not hardcoded answers, just structured extraction + computation. See [FAQ.md](docs/FAQ.md#is-this-just-hardcoding) for details.
 
 **Q: What about GPT-4?**
 

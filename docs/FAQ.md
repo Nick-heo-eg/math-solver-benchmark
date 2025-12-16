@@ -4,10 +4,44 @@
 
 ### Q: Is this just hardcoding solutions?
 
-**A: Yes, and that's exactly the point.**
+**A: The patterns are fixed, but the numbers and answers are computed dynamically.**
+
+**What's fixed (reusable)**:
+- Pattern library: `r'\bcommittee\b'`, `r'\bchoose\b'`, etc.
+- Extraction logic: `int(re.search(r'(\d+)\s*men', text).group(1))`
+- Formula templates: `math.comb(m, k)`
+
+**What's dynamic (per problem)**:
+- Input numbers: "6 men, 4 women" → extracts `6`, `4`
+- Output answers: `C(6,3) × C(4,2) = 180` (computed, not hardcoded)
+- Problem variations: Same pattern handles infinite numerical variations
+
+**Example**:
+```
+Problem A: "5 from 6 men, 4 women" → extracts (6,4,5) → computes 180
+Problem B: "10 from 20 men, 15 women" → extracts (20,15,10) → computes different answer
+Problem C: "3 from 8 men, 5 women" → extracts (8,5,3) → computes different answer
+```
+
+**The pattern is reused, but answers are calculated, not hardcoded.**
+
+Compare to "true hardcoding":
+```python
+# This would be hardcoding (we don't do this):
+if problem == "6 men 4 women committee 5":
+    return 180
+```
+
+**What we actually do**:
+```python
+# Extract dynamically, compute dynamically:
+men = extract_number(problem, r'(\d+)\s*men')      # 6 from problem A, 20 from B
+women = extract_number(problem, r'(\d+)\s*women')  # 4 from problem A, 15 from B
+answer = compute_combinations(men, women, size)    # different for each input
+```
 
 The question presumes "hardcoding" is bad. But for structured domains:
-- Hardcoded rules: 0.183ms, 100% accuracy, $0.000001/problem
+- Pattern-based computation: 0.183ms, 100% accuracy, $0.000001/problem
 - LLM "understanding": 90,000ms timeout, 0% accuracy, $0.03/problem
 
 **When structure exists, exploiting it beats ignoring it.**
@@ -199,6 +233,41 @@ def solve_graph_theory(structure):
 ```
 
 **Cost**: 5-30 minutes design time → infinite runtime uses
+
+---
+
+### Q: The JSON results contain specific numbers. Are those hardcoded?
+
+**A: No, those are execution results from running the benchmark.**
+
+**What you see in `results/stage3_pattern_matching.json`**:
+```json
+{
+  "problem_id": "prob_001",
+  "variables": {
+    "total_men": 6,
+    "total_women": 4,
+    "committee_size": 5
+  },
+  "answer": "180"
+}
+```
+
+**These numbers are stored because**:
+- They were **computed** when we ran the benchmark
+- JSON files record **what happened**, not what the code does
+- If you run with different problems, you get different numbers
+
+**Think of it like a log file**:
+- Code: `answer = compute(men, women, size)`  ← This is dynamic
+- Log: `{"men": 6, "women": 4, "answer": 180}`  ← This records one execution
+
+**To verify it's not hardcoded**:
+1. Change the problem in `data/test_problems.json`
+2. Run `python scripts/run_stage3_pattern_matching.py`
+3. See different numbers in the new results file
+
+**The code computes, the JSON records.** They're not the same thing.
 
 ---
 

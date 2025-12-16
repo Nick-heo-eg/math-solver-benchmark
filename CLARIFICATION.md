@@ -162,9 +162,40 @@ This benchmark quantifies what that costs.
 
 ### "Isn't Architecture B just hardcoding?"
 
-No, it's **pattern composition**. See [FAQ.md](docs/FAQ.md#is-this-just-hardcoding) for detailed explanation.
+No, it's **pattern composition with dynamic computation**.
 
-Key: 6 pattern categories handle infinite variations, not 6 hardcoded answers.
+**What's fixed**:
+- Pattern templates (designed once)
+- Extraction logic (regex)
+- Formula structure
+
+**What's dynamic**:
+- Input numbers (extracted from each problem)
+- Output answers (computed per problem)
+- Problem variations (infinite)
+
+**Example**:
+```
+Pattern (fixed):     r'(\d+)\s*men.*?(\d+)\s*women'
+Problem A:           "6 men and 4 women" → extracts (6, 4) → computes answer A
+Problem B:           "20 men and 15 women" → extracts (20, 15) → computes answer B
+```
+
+**True hardcoding would be**:
+```python
+if problem == "6 men 4 women":
+    return 180  # ← We don't do this
+```
+
+**What we actually do**:
+```python
+men, women = extract_numbers(problem)  # Different each time
+return compute(men, women)              # Calculated, not hardcoded
+```
+
+See [FAQ.md](docs/FAQ.md#is-this-just-hardcoding) for detailed explanation.
+
+Key: 6 pattern categories handle infinite numerical variations, not 6 hardcoded answers.
 
 ### "What if patterns don't cover my domain?"
 
