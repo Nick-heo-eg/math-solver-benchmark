@@ -113,7 +113,7 @@ Fundamental issue: Token generation is sequential, pattern matching is instant.
 
 **What we proved**:
 - Pattern matching **can** solve GPT-4 level math (100% accuracy)
-- Pattern matching **is** orders of magnitude faster (492,896×)
+- Pattern matching **achieves sub-millisecond latency** (0.215ms vs 90s timeout)
 - LLM parsing **does** fail in runtime (0% success, timeout)
 
 **What we didn't prove**:

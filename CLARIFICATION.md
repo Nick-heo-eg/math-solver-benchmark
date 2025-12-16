@@ -61,13 +61,14 @@ This is **not** about LLM capability. It's about **system architecture**.
 ### The Answer
 
 **For structured domains** (math, logic, data extraction with patterns):
-- Architecture B is **492,896× faster**
-- Architecture B is **~30,000× cheaper**
-- Architecture B is **deterministic** (no sampling variance)
+- Architecture B: Sub-millisecond latency (0.215ms)
+- Architecture A: 90s timeout (LLM parsing failed)
+- Cost: ~30,000× cheaper (compute vs API calls)
+- Deterministic: No sampling variance
 
 **Trade-off**:
 - Architecture A handles novel inputs better (more flexible)
-- Architecture B requires upfront design (less flexible, but faster/cheaper at scale)
+- Architecture B requires upfront design (less flexible, but practical at scale)
 
 ---
 
@@ -212,11 +213,11 @@ Then Architecture A might be necessary, or:
 - Runtime LLM parsing (phi3:mini at runtime)
 - vs LLM-designed pattern matching (Claude for design, regex at runtime)
 
-**For structured computational domains**, the LLM-designed approach is:
-- 400,000× faster
-- 30,000× cheaper
-- Equally accurate
-- More deterministic
+**For structured computational domains**, the LLM-designed approach achieved:
+- Sub-millisecond latency (0.215ms vs 90s timeout)
+- ~30,000× lower cost (compute vs API calls)
+- 100% accuracy on designed problems
+- Deterministic execution
 
 **The principle**: Use LLM intelligence to design systems, not to run them.
 

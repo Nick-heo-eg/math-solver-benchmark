@@ -1,10 +1,9 @@
 # Math Solver Benchmark: LLM vs Pattern Matching
 
-> **TL;DR**: We tested 5 approaches to solve GPT-4 level math problems. Pattern matching (no LLM) won by **400,000×** in speed while maintaining 100% accuracy.
+> **TL;DR**: We compared runtime LLM parsing vs pattern matching for solving GPT-4 level math problems. Pattern matching achieved 100% accuracy with sub-millisecond latency, while LLM parsing timed out.
 
 [![Experiment Status](https://img.shields.io/badge/experiment-completed-success)]()
 [![Accuracy](https://img.shields.io/badge/accuracy-100%25-brightgreen)]()
-[![Speed](https://img.shields.io/badge/speedup-400000x-blue)]()
 
 > ⚠️ **Important**: This compares **runtime LLM parsing vs LLM-designed patterns**, not "LLM capability vs regex". See [CLARIFICATION.md](CLARIFICATION.md) for details.
 
@@ -13,9 +12,11 @@
 | Approach | Speed | Accuracy | LLM Used |
 |----------|-------|----------|----------|
 | **Pure Computation** | 0.008ms | 100% | No |
-| **Pattern Matching** | 0.183ms | 100% | No |
+| **Pattern Matching** | 0.215ms | 100% | No |
 | **Cached LLM** | 0.034ms (after 500ms cold start) | 100% | Once |
 | **LLM Parsing** | >90,000ms (timeout) | 0% | Yes |
+
+**Speed comparison**: Pattern matching (0.215ms) vs LLM parsing (>90s timeout) = ~400,000× difference
 
 ## The Question
 
@@ -23,7 +24,7 @@
 
 ## The Answer
 
-**Yes. And it's 400,000× faster.**
+**Yes, for structured domains. Pattern matching achieves the same accuracy at sub-millisecond latency.**
 
 ## What We Actually Compared
 
@@ -47,7 +48,7 @@ This is **not** "regex vs LLM capability". It's **runtime architecture compariso
 
 This validates the principle: **"LLM for design (offline), deterministic code for execution (online)"**
 
-The comparison proves: Runtime LLM parsing (phi3:mini) vs LLM-designed patterns (no runtime LLM) = 492,896× speedup.
+**Measured performance**: Pattern matching (0.215ms) vs LLM parsing (90s timeout) demonstrates the practical difference between runtime LLM calls and LLM-designed deterministic code.
 
 ## What We Tested
 
@@ -76,20 +77,20 @@ See [data/test_problems.json](data/test_problems.json) for full problem set.
 
 ### Key Findings
 
-1. **LLM is always the bottleneck**
+1. **Runtime LLM is the bottleneck**
    - Real-time LLM parsing: 90s timeout, 0% accuracy
    - Even cached LLM: 4.3× overhead vs pure computation
 
-2. **Pattern matching wins for structured problems**
-   - 23.5× slower than pure computation (still <1ms)
-   - 492,896× faster than LLM parsing
+2. **Pattern matching is practical for structured problems**
+   - 27× slower than pure computation (still 0.215ms)
+   - Pattern: 0.215ms vs LLM: 90,000ms
    - 100% accuracy, deterministic
 
-3. **The cost of "intelligence"**
-   - Orchestration overhead: 1.5×
+3. **Overhead comparison (relative to baseline)**
+   - Orchestration: 1.5×
    - Cache I/O: 4.3×
-   - Pattern matching: 23.5×
-   - LLM generation: **64,208×**
+   - Pattern matching: 27×
+   - LLM generation: >10,000×
 
 ## How Pattern Matching Works
 
