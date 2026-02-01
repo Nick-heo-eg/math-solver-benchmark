@@ -11,6 +11,17 @@ Active development and production-ready implementations are consolidated here:
 
 ---
 
+## Position
+
+This repository is part of the **Judgment Boundary** work:
+a set of experiments and specifications focused on
+*when AI systems must stop or not execute*.
+
+See the overarching map:
+→ https://github.com/Nick-heo-eg/stop-first-rag/blob/main/JUDGMENT_BOUNDARY_MANIFEST.md
+
+---
+
 > **Status**: 6/6 patterns implemented and verified (2025-12-16)
 
 [![Tests](https://img.shields.io/badge/tests-6/6_passing-success)]()
